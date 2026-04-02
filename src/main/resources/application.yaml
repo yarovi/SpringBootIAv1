@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: SpringBootIAv1
+  ai:
+    # Configuración para OPENAI
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+      embedding:
+        options:
+          model: text-embedding-ada-002
+
+    # Configuración para QDRANT
+    vectorstore:
+      qdrant:
+        host: localhost
+        port: 6334
+        collection-name: mi-documentacion-tecnica
+        # NUEVO: En versiones recientes, initialize-schema por defecto es 'false' [citation:3][citation:5]
+        initialize-schema: true
+        # NUEVO: Estrategia de batching, TOKEN_COUNT es el valor por defecto y recomendado [citation:3]
+        batching-strategy: TOKEN_COUNT
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
